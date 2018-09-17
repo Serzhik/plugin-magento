@@ -1,5 +1,4 @@
 <?php
-
 /**
  * LiqPay Extension for Magento 2
  *
@@ -9,7 +8,6 @@
  */
 
 namespace LiqpayMagento\LiqPay\Api;
-
 
 interface LiqPayCallbackInterface
 {

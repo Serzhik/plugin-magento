@@ -1,5 +1,5 @@
 {
-  "name": "liqpaymagento/liqpay",
+  "name": "serzhik/module-liqpay",
   "description": "LiqPay Payment",
   "type": "magento2-module",
   "version": "1.0.0",
@@ -9,6 +9,10 @@
       "name": "Volodymyr Konstanchuk",
       "email": "vova.konstanchuk@gmail.com",
       "homepage": "http://konstanchuk.com"
+    },
+    {
+      "name": "Serhii Koval",
+      "email": "sergiy.koval@gmail.com"
     }
   ],
   "require": {
