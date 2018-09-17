@@ -1,5 +1,4 @@
 <?php
-
 /**
  * LiqPay Extension for Magento 2
  *
@@ -17,7 +16,6 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\View\LayoutFactory;
 use Magento\Checkout\Model\Session as CheckoutSession;
 use LiqpayMagento\LiqPay\Helper\Data as Helper;
-
 
 class Form extends Action
 {
@@ -41,8 +39,7 @@ class Form extends Action
         CheckoutSession $checkoutSession,
         Helper $helper,
         LayoutFactory $layoutFactory
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->_checkoutSession = $checkoutSession;
         $this->_helper = $helper;
@@ -53,7 +50,6 @@ class Form extends Action
      * Dispatch request
      *
      * @return \Magento\Framework\Controller\ResultInterface|ResponseInterface
-     * @throws \Magento\Framework\Exception\NotFoundException
      */
     public function execute()
     {
@@ -70,7 +66,7 @@ class Form extends Action
                 $formBlock = $this->_layoutFactory->create()->createBlock('LiqpayMagento\LiqPay\Block\SubmitForm');
                 $formBlock->setOrder($order);
                 $data = [
-                    'status' => 'success',
+                    'status'  => 'success',
                     'content' => $formBlock->toHtml(),
                 ];
             } else {
@@ -81,23 +77,23 @@ class Form extends Action
             $this->_helper->getLogger()->critical($e);
             $this->getCheckoutSession()->restoreQuote();
             $data = [
-                'status' => 'error',
+                'status'   => 'error',
                 'redirect' => $this->_url->getUrl('checkout/cart'),
             ];
         }
         /** @var \Magento\Framework\Controller\Result\Json $result */
         $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
         $result->setData($data);
+
         return $result;
     }
-
 
     /**
      * Return checkout session object
      *
      * @return \Magento\Checkout\Model\Session
      */
-    protected function getCheckoutSession()
+    protected function getCheckoutSession(): CheckoutSession
     {
         return $this->_checkoutSession;
     }

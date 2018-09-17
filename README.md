@@ -11,14 +11,36 @@ Tested for Magento version:
 thanks to 
 Volodymyr Konstanchuk http://konstanchuk.com
 
-Основные функции:
+###Основные функции:
 - прием платежей с помощью платежней системы LiqPay;
 - отслеживания оплаты;
 - изменения статуса платежа и создания накладной;
 - поддержка тестового режима;
 - использует официальное SDK LiqPay.
 
-Установка:
+###Setup:
+
+#### ✓ Method #1. Composer method (Recommend)
+Install the Liqpay module via composer.
+
+**Install Liqpay module**:
+
+```
+composer config repositories.liqpay vcs https://github.com/serzhik/module-liqpay.git
+composer require serzhik/module-liqpay:dev-master
+
+```
+
+
+**Update Liqpay module**:
+
+```
+composer config repositories.liqpay vcs https://github.com/serzhik/module-liqpay.git
+composer update serzhik/module-liqpay:dev-master
+
+```
+
+#### Method #2
 - установите официально SDK LiqPay следующей командой:
 composer require liqpay/liqpay
 Может понадобится добавления строк
@@ -34,7 +56,7 @@ php bin/magento cache:clean
 - все команды должны закончится успешно. В app/etc/config.php должен появится
 данный модуль данный модуль.
 
-Настройка:
+###Настройка:
 - перейдите в admin -> stores -> configuration -> sales -> payment methods -> liqpay
 (должен быть в самом низу);
 - указать приватный и публичный ключ в настройках и включить модуль в поле
@@ -43,21 +65,21 @@ Enabled. (если приватный и публичный ключ не ука
 - после изменения любой конфигурации нужно чистить кеш (php bin/magento
 cache:clean).
 
-Проверка:
+###Проверка:
 - положите товар в корзину и перейдите на чекаут.
 - на последнем этапе чекаута в выборе оплаты должен появится метод оплаты LiqPay.
 - если он не появился, смотрите логи в папке [SITE_ROOT]/var/log
 - после выбора ликпея и нажатия на кнопку 'place order' должно перебросить на
 страницу оплаты.
 
-Callback:
+###Callback:
 для получения результата проведения платежа на сервер нужно:
 - в настройках мерчанта Liqpay указать server_url​ http://your_host/rest/V1/liqpay/callback, где ​http://your_host - адрес вашего сайта.
 - после проведения платежа Liqpay пришлет запрос на http://your_host/rest/V1/liqpay/callback, более подробна на https://www.liqpay.ua/documentation/ru
 
 
 
-Troubleshooting:
+###Troubleshooting:
 
 - может понадобиться изменение лимита памяти в файле конфигурации, например:
 chown apache:root /var/www/
