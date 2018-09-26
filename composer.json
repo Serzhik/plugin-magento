@@ -17,7 +17,7 @@
   ],
   "require": {
     "php": "^7.0",
-    "liqpay/liqpay": "dev-master"
+    "liqpay/liqpay": "@stable"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
